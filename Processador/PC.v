@@ -1,12 +1,12 @@
-module PC(clock, entrada, saida);
+module PC(inp, outp, clock);
 
+input [15:0] inp;
 input clock;
-input [31:0]entrada;
 
-output reg [31:0]saida = 0;
+output reg [15:0] outp = 0;
 
-always @ (posedge clock or negedge clock)begin
-  saida = entrada;
+always @ (posedge clock or negedge clock) begin
+  outp = inp;
 end
 
 endmodule
