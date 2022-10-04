@@ -1,17 +1,17 @@
-module muxIF(clock, PCSrc, entradaPC4_mux, sinal_deslocado, resposta);
+module MuxIF(clock, PCSrc, inputPC4Mux, signalShifted, response);
     
     input clock;
-    input [31:0] entradaPC4_mux;
-    input [31:0] sinal_deslocado;
+    input [15:0] inputPC4Mux;
+    input [15:0] signalShifted;
     input PCSrc;
 
-    output reg [31:0]resposta;
+    output reg [15:0]response;
 
     always @ (negedge clock or posedge clock)begin
         if(PCSrc == 0)begin
-          resposta <= entradaPC4_mux;
+            response <= inputPC4Mux;
         end if(PCSrc == 1)begin
-          resposta <= sinal_deslocado;
+            response <= signalShifted;
         end
     end
 

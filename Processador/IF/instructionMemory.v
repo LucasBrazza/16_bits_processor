@@ -1,9 +1,9 @@
-module instructionMemory(address, instructionOut, clock);
+module InstructionMemory(address, instructionOutput, clock);
 
     input clock;
     input [15:0]address;
 
-    output reg [15:0]instructionOut;
+    output reg [15:0]instructionOutput;
     
     reg [15:0]instructions[1599:0];
 
@@ -12,7 +12,7 @@ module instructionMemory(address, instructionOut, clock);
     end
 
     always @ (negedge clock) begin
-      instructionOut = instructions[(address/4) - 1];
+      instructionOutput = instructions[(address/4) - 1];
     end
 
 endmodule
