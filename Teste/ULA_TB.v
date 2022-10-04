@@ -1,4 +1,4 @@
-`include "ULA.v"
+`include "../Processador/ULA.v"
 
 module ULA_TB;
 	

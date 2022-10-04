@@ -1,4 +1,4 @@
-`include "Banco_registradores.v"
+`include "../Processador/Banco_registradores.v"
 
 module Banco_registradores_TB;
 	reg clock;

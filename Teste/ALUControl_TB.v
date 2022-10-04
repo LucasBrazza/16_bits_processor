@@ -1,4 +1,4 @@
-`include "ALUControl.v"
+`include "../Processador/ALUControl.v"
 
 module ALUControl_TB;
 

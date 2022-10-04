@@ -39,7 +39,8 @@ wire [4:0]rtIFID;
 wire [4:0]rdIFID;
 wire [4:0]shamtIFID;
 wire [5:0]functIFID;
-wire [31:0]addressIFID;
+wire [15:0]addressIFID;
+wire [25:0]addressJumpIFID;
 wire [31:0]PC4_outIFID;
 
 //ID
@@ -47,20 +48,22 @@ wire [31:0]dadolido1ID;
 wire [31:0]dadolido2ID;
 wire [31:0]sinalextendidoID;
 wire [4:0]rt_mux_outID;
-wire [4:0]rd_mux_outID; 
+wire [4:0]rd_mux_outID;
 wire [4:0]rs_fw_outID; 
 wire [4:0]rt_fw_outID; 
-wire [31:0]PC4ID_out_ID;
+wire [31:0]PC4_out_ID;
 
 //IDEX
 wire [31:0]PC4_outIDEX;
 wire [31:0]dadoRt_outIDEX;
 wire [31:0]dadoRs_outIDEX;
 wire [31:0]sinalExtendido_outIDEX;
-wire [4:0]rt_mux_outIDEX;
-wire [4:0]rd_mux_outIDEX; 
-wire [4:0]rs_fw_outIDEX; 
-wire [4:0]rt_fw_outIDEX; 
+wire [4:0]rt_mux_out_IDEX;
+wire [4:0]rd_mux_out_IDEX;
+wire [4:0]rs_fw_out_IDEX; 
+wire [4:0]rt_fw_out_IDEX; 
+wire [1:0]ALUOp_IDEX; 
+
 
 //EX
 wire [4:0]RD_EX;
@@ -178,25 +181,25 @@ ID idmain(
 	.WB(mux_WB), 
 	.WriteRegister(rd_WB), 
 	.regWrite(regWrite_WB), 
-	.dadolido1(dadolido1ID), 
-	.dadolido2(dadolido2ID), 
+	.dado1(dadolido1ID), 
+	.dado2(dadolido2ID), 
 	.sinalextendido(sinalextendidoID), 
 	.rt_mux(rt_mux_outID), 
 	.rd_mux(rd_mux_outID), 
 	.rs_fw(rs_fw_outID), 
 	.rt_fw(rt_fw_outID), 
-	.PC4ID_out(PC4ID_out_ID));
+	.PC4ID_out(PC4_out_ID));
 //ok
 IDEX idexmain(
 	.clock(clock), 
-	.PC4(PC4ID_outID), 
+	.PC4(PC4_out_ID), 
 	.dadoRs(dadolido1ID), 
 	.dadoRt(dadolido2ID), 
 	.regDst(regDst_main), 
 	.branch(branch_main), 
 	.memRead(memRead_main), 
 	.memtoReg(memtoReg_main), 
-	.ALUOp(ALUOp_main), 
+	.ALUOp(ALUOp_UC), 
 	.memWrite(memWrite_main), 
 	.ALUSrc(ALUSrc_main), 
 	.regWrite(regWrite_main), 
