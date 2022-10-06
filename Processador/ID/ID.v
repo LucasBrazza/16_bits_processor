@@ -1,29 +1,29 @@
-`include "Banco_registradores.v"
-`include "extensor16_32.v"
+`include "RegisterBank.v"
+`include "SignalExtensor.v"
 
 module ID(clock, rs, rt, rd, funct, address, adressjump, PC4ID, WB, WriteRegister, regWrite, dado1, dado2, sinalextendido, 
                 rt_mux, rd_mux, rs_fw, rt_fw, PC4ID_out);
 
 input clock;
-input [4:0]rs;
-input [4:0]rt;
-input [4:0]rd;
-input [5:0]funct;
+input [2:0]rs;
+input [2:0]rt;
+input [2:0]rd;
+input [2:0]funct;
 input [15:0]address;
-input [25:0]adressjump;
-input [31:0]PC4ID;
-input [31:0]WB;
-input [4:0]WriteRegister;
+input [13:0]adressjump;
+input [15:0]PC4ID;
+input [15:0]WB;
+input [2:0]WriteRegister;
 input regWrite;
 
-output [31:0]dado1;
-output [31:0]dado2;
-output [31:0]sinalextendido;
-output reg [4:0]rt_mux;
-output reg [4:0]rd_mux;
-output reg [4:0]rs_fw;
-output reg [4:0]rt_fw;
-output reg [31:0]PC4ID_out;
+output [15:0]dado1;
+output [15:0]dado2;
+output [15:0]sinalextendido;
+output reg [2:0]rt_mux;
+output reg [2:0]rd_mux;
+output reg [2:0]rs_fw;
+output reg [2:0]rt_fw;
+output reg [15:0]PC4ID_out;
 
 initial begin
   rt_mux = rt;

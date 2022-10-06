@@ -9,8 +9,8 @@ module RegisterBank(clock, regWrite, reg1, reg2, reg3, dataToWrite, data1, data2
 
     // esse é o output original, achei q saiam 32 bits, mas aqui saem só 5???
     // no nosso caso seria o que entao?
-    output reg [4:0]data1;
-    output reg [4:0]data2;
+    output reg [2:0]data1;
+    output reg [2:0]data2;
 
     // esse [5:0] tbm é o original, ele diz respeito a que?
     reg [5:0]registers[15:0];

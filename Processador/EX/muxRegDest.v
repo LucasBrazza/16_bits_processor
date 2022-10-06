@@ -1,11 +1,11 @@
 module muxRegDest(clock, r1, r2, regDest, saida);
 
-    input [4:0]r1;
-    input [4:0]r2;
+    input [2:0]r1;
+    input [2:0]r2;
     input regDest;
     input clock;
 
-    output reg [4:0]saida;
+    output reg [2:0]saida;
 
     always @ (posedge clock or negedge clock)begin
       if(regDest == 0)begin

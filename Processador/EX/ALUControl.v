@@ -1,7 +1,7 @@
 module ALUControl(clock, funct, ALUOp, saida);
     
     input clock;
-    input [5:0]funct;
+    input [2:0]funct;
     input [1:0]ALUOp;
 
     output reg [2:0]saida;

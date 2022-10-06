@@ -1,11 +1,11 @@
 module muxALUSrc(clock, dado1, dado2, ALUSrc, saida);
 
-    input [31:0]dado1;
-    input [31:0]dado2;
+    input [15:0]dado1;
+    input [15:0]dado2;
     input ALUSrc;
     input clock;
 
-    output reg [31:0]saida;
+    output reg [15:0]saida;
 
     always @ (posedge clock or negedge clock)begin
       if(ALUSrc == 0)begin

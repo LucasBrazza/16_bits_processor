@@ -1,11 +1,11 @@
 module ULA(clock, entrada1, entrada2, ALUControl, zero, resultado);
 
    input clock;
-   input [31:0]entrada1;
-   input [31:0]entrada2;
+   input [15:0]entrada1;
+   input [15:0]entrada2;
    input [2:0]ALUControl;
 
-   output reg [31:0]resultado;
+   output reg [15:0]resultado;
 	output reg zero;
 	
    always @(posedge clock)
@@ -19,9 +19,9 @@ module ULA(clock, entrada1, entrada2, ALUControl, zero, resultado);
         3'b100: 
 		  begin
 				if (entrada1 < entrada2) begin
-                    resultado = 32'b1;
+                    resultado = 16'b1;
             end else begin
-                    resultado = 32'b0;
+                    resultado = 16'b0;
             end
 		  end
 

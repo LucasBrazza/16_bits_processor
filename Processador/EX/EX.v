@@ -1,6 +1,6 @@
 `include "muxALUSrc.v"
 `include "muxRegDest.v"
-`include "Somador.v"
+`include "adder.v"
 `include "Shift_left.v"
 `include "ALUControl.v"
 `include "ULA.v"
@@ -12,48 +12,48 @@ module EX(clock, PC4, dado1ALU, dado2ALU, endereco, reg2, reg3, ALUSrc_EX, ALUOp
 
 input  clock;
 //entradas do módulo
-input [31:0]PC4;
-input [31:0]dado1ALU;
-input [31:0]dado2ALU;
-input [31:0]endereco;
-input [4:0]reg2;
-input [4:0]reg3;
+input [15:0]PC2;
+input [15:0]dado1ALU;
+input [15:0]dado2ALU;
+input [15:0]endereco;
+input [2:0]reg2;
+input [2:0]reg3;
 input ALUSrc_EX;
 input [1:0]ALUOpEx;
 input regDestEx;
-input [31:0]resultadoALU_MEM;
-input [31:0]resultadoMux_WB;
+input [15:0]resultadoALU_MEM;
+input [15:0]resultadoMux_WB;
 input [1:0]saidaAfw;
 input [1:0]saidaBfw;
 
-reg [5:0]functEx;
+reg [2:0]functEx;
 
 
 //saidas dos modulos internos
 
-wire [31:0]enderecoSHIFT;
-wire [31:0]saidaMuxALUSrc;
+wire [15:0]enderecoSHIFT;
+wire [15:0]saidaMuxALUSrc;
 wire [2:0]saidaULAControl;
 //wire [1:0]saidaAfw;
 //wire [1:0]saidaBfw;
-wire [31:0]saidaMuxA;
-wire [31:0]saidaMuxB;
+wire [15:0]saidaMuxA;
+wire [15:0]saidaMuxB;
 
-output [4:0]RD;
-output [31:0]saidaSomador;
-output [31:0]saidaULA;
+output [2:0]RD;
+output [15:0]saidaSomador;
+output [15:0]saidaULA;
 output zeroEx;
-output reg [31:0]dado2ALU_out;
+output reg [15:0]dado2ALU_out;
 
 always @(*)begin
-  functEx = endereco[5:0];
+  functEx = endereco[2:0];
   dado2ALU_out = dado2ALU;
 end
 
 /*initial begin
-  $monitor("clock = %b \n dado1 = %b \n dado2 = %b \n endereco = %b \n endereco deslocado = %b \n reg2 = %b \n reg3 = %b \n ALUSrc = %b \n funct = %b \n ALUOp = %b \n regDest = %b \n PC4 = %b \n saida somador = %b \n saida ULA = %b \n saida reg dest = %b \n", clock, dado1ALU, dado2ALU, endereco, enderecoSHIFT, reg2, reg3, ALUSrc_EX, functEx, ALUOpEx, regDestEx, PC4, saidaSomador, saidaULA, RD);
+  $monitor("clock = %b \n dado1 = %b \n dado2 = %b \n endereco = %b \n endereco deslocado = %b \n reg2 = %b \n reg3 = %b \n ALUSrc = %b \n funct = %b \n ALUOp = %b \n regDest = %b \n PC2 = %b \n saida somador = %b \n saida ULA = %b \n saida reg dest = %b \n", clock, dado1ALU, dado2ALU, endereco, enderecoSHIFT, reg2, reg3, ALUSrc_EX, functEx, ALUOpEx, regDestEx, PC2, saidaSomador, saidaULA, RD);
           clock = 0;
-          #5 PC4 =  32'b00000000000000000000000001010101;
+          #5 PC2 =  32'b00000000000000000000000001010101;
           ALUSrc_EX = 0;
           ALUOpEx = 2'b00;
           regDestEx = 0;
@@ -78,7 +78,7 @@ Shift_left desloca(
 
 Somador soma(
 	.clock(clock), 
-	.entrada1(PC4), 
+	.entrada1(PC2), 
 	.entrada2(enderecoSHIFT), 
 	.resultado(saidaSomador));
 
