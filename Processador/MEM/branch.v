@@ -1,9 +1,13 @@
-module branch(clock, s1, s2, r);
-    input clock, s1, s2;
-    output reg r;
+module Branch(clock, s1, s2, outputBranch);
+
+    input clock;
+    input s1;
+    input s2;
+
+    output reg outputBranch;
 
     always @ (posedge clock or posedge clock)begin
-      r = s1 && s2;
+        outputBranch = s1 && s2; 
     end
 
 endmodule

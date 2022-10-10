@@ -1,50 +1,49 @@
-`include "memoria_dados.v"
-`include "branch.v"
+`include "DataMemory.v"
+`include "Branch.v"
 
-module MEM(clock, saidaULAMem, dadoEscritaMem, RD, PCdesvio, memReadMem, memWriteMem, zero, branch, dadoLidoMem_out, PCSrc, saidaULAMem_out, RD_out, PCdesvio_out);
+module MEM(clock, resultULA, writeDataMEM, RegDst, shiftPC, MemRead, MemWrite, Zero, Branch, outputDataReadMEM, PCSrc, outputMemULA, outputRegDst, outputShiftPC);
 
     input clock;
-    input [31:0]saidaULAMem;
-    input [31:0]dadoEscritaMem;
-    input [4:0]RD;
-    input [31:0]PCdesvio;
-    input memReadMem;
-    input memWriteMem;
-    input zero;
-    input branch;
+    input MemRead;
+    input MemWrite;
+    input Zero;
+    input Branch;
+    input [15:0]resultULA;
+    input [15:0]writeDataMEM;
+    input [2:0]RegDst;
+    input [15:0]shiftPC;
 
-
-    output [31:0]dadoLidoMem_out;
     output PCSrc;
-    output reg [31:0]saidaULAMem_out;
-    output reg [4:0]RD_out;
-    output reg [31:0]PCdesvio_out;
+    output [15:0]outputDataReadMEM;
+    output reg [15:0]outputMemULA;
+    output reg [2:0]outputRegDst;
+    output reg [15:0]outputShiftPC;
 
     always @(posedge clock or negedge clock)begin
-      saidaULAMem_out = saidaULAMem;
-      RD_out = RD;
-      PCdesvio_out = PCdesvio;
+        outputMemULA = resultULA;
+        outputRegDst = RegDst;
+        outputShiftPC = shiftPC;
     end
 
     /*initial begin
       $monitor("clock = %b \nendereco = %b \ndado escrita = %b \nRD = %b \nPC desvio = %b\nmemRead = %b \nmemWrite = %b \nzero = %b \nM = %b \ndado lido = %b \nbranch = %b\n\n",
-      clock, saidaULAMem, dadoEscritaMem, RD, PCdesvio, memReadMem, memWriteMem, zero, M, dadoLidoMem, branchMem);
+      clock, outputMemULA, writeDataMEM, RegDst, shiftPC, MemRead, MemWrite, Zero, M, dadoLidoMem, branchMem);
       clock = 0;
-      #5 saidaULAMem = 0;
-      memWriteMem = 1;
-      dadoEscritaMem = 0;
-      RD = 5'b00001;
-      PCdesvio = 4;
-      memReadMem = 0;
-      zero = 1;
+      #5 outputMemULA = 0;
+      MemWrite = 1;
+      writeDataMEM = 0;
+      RegDst = 5'b00001;
+      shiftPC = 4;
+      MemRead = 0;
+      Zero = 1;
       M = 0;
-      #10 saidaULAMem = 0;
-      memReadMem = 1;
-      memWriteMem = 0;
-      dadoEscritaMem = 1;
-      RD = 5'b00010;
-      PCdesvio = 8;
-      zero = 1; 
+      #10 outputMemULA = 0;
+      MemRead = 1;
+      MemWrite = 0;
+      writeDataMEM = 1;
+      RegDst = 5'b00010;
+      shiftPC = 8;
+      Zero = 1; 
       M = 1;
       #10 $finish;
 
@@ -54,18 +53,18 @@ module MEM(clock, saidaULAMem, dadoEscritaMem, RD, PCdesvio, memReadMem, memWrit
         #5 clock = !clock;
     end*/
 
-    memoria_dados memData(
-	  .clock(clock),
-	  .memRead(memReadMem),
-	  .memWrite(memWriteMem),
-	  .endereco(saidaULAMem),
-	  .dadoEscrita(dadoEscritaMem),
-	  .dadoLido(dadoLidoMem_out));
+    DataMemory dataMem(
+        .clock(clock),
+        .MemRead(MemRead),
+        .MemWrite(MemWrite),
+        .address(resultULA),
+        .writeData(writeDataMEM),
+        .dataRead(outputDataReadMEM));
 
-    branch brnch(
-	  .clock(clock),
-	  .s1(M),
-	  .s2(zero),
-	  .r(PCSrc));
+    Branch branch(
+        .clock(clock),
+        .s1(Branch),
+        .s2(Zero),
+        .outputBranch(PCSrc));
 
 endmodule
