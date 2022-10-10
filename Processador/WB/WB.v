@@ -4,11 +4,11 @@
 module WB(clock, dataReadMEM, resultULAEXE, MemtoReg, RegDst, RegWrite, outputMUX, outputRegDst, outputRegWrite);
 
 input clock;
+input MemtoReg;
+input RegWrite; 
 input [15:0]dataReadMEM;
 input [15:0]resultULAEXE;
-input MemtoReg;
 input [2:0]RegDst;
-input RegWrite; 
 
 output [15:0]outputMUX;
 output reg [2:0]outputRegDst;
@@ -45,9 +45,9 @@ end*/
 
 MuxWB mux(
     .clock(clock), 
-    .resultadoALU(resultULAEXE), 
-    .dadoLido(dataReadMEM),
-    .resposta(outputMUX), 
+    .resultULA(resultULAEXE), 
+    .dataRead(dataReadMEM),
+    .outputMUX(outputMUX), 
     .MemtoReg(MemtoReg));
 
 endmodule
