@@ -12,11 +12,15 @@ module ALU(clock, input1, input2, ALUControl, zero, result);
 	 begin
       case(ALUControl)
 		  
-		3'b000: result = input1 & input2;
-        3'b001: result = input1 | input2;
-        3'b010: result = input1 + input2;
-        3'b011: result = input1 - input2;
-        3'b100: 
+		3'b000: result = input1 & input2;   //AND
+
+        3'b001: result = input1 | input2;   //OR
+
+        3'b010: result = input1 + input2;   //ADD
+
+        3'b110: result = input1 - input2;   //SUB
+
+        3'b111:                             //SLT             
 		  begin
 				if (input1 < input2) begin
                     result = 16'b1;

@@ -1,33 +1,23 @@
-module ALUControl(clock, funct, ALUOp, saida);
+module ALUControl(clock, funct, ALUOp, outputALUControl);
     
     input clock;
-    input [2:0]funct;
     input [1:0]ALUOp;
+    input [2:0]funct;
 
-    output reg [2:0]saida;
+    output reg [2:0]outputALUControl;
 
     always @ (*)begin
-      case(ALUOp)
-        2'b00: saida = 3'b010;  //LW SW
+        case(ALUOp)
+            2'b00: outputALUControl = 3'b010;  //LW SW
 
-        2'b01: saida = 3'b110;  //BRANCH
+            2'b01: outputALUControl = 3'b110;  //BRANCH
 
-        2'b10: case(funct)    //R-TYPE
-                 3'b010: saida = 3'b010; //add 
+            2'b10: outputALUControl = funct;    //R-TYPE
 
-                 3'b110: saida = 3'b110; // subtract
+            2'b11: outputALUControl = 3'b010;
 
-                 3'b000: saida = 3'b000; // AND
-
-                 3'b001: saida = 3'b001; //OR 
-
-                 3'b111: saida = 3'b111; // SET ON LESS THAN
-
-                 default: $display("Funct value not supported!");
-                endcase
-        default: $display("ALUOp value not supported!"); 
-      endcase
+            default: $display("ALUOp value not supported!"); 
+        endcase
     end
-
 
 endmodule

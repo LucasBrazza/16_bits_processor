@@ -25,7 +25,7 @@ module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, Mem
                 MemRead = 0;
                 MemWrite = 0;
                 Branch = 0;
-                ALUOp = 2'b00;
+                ALUOp = 2'b11;
                 Jump = 1;
             end
             //R-Type
