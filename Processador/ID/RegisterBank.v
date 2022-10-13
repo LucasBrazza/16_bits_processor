@@ -1,7 +1,7 @@
-module RegisterBank(clock, regWrite, reg1, reg2, reg3, dataToWrite, data1, data2);
+module RegisterBank(clock, RegWrite, reg1, reg2, reg3, dataToWrite, data1, data2);
 
     input clock;
-    input regWrite;
+    input RegWrite;
     input [2:0]reg1;
     input [2:0]reg2;
     input [2:0]reg3;
@@ -32,7 +32,7 @@ module RegisterBank(clock, regWrite, reg1, reg2, reg3, dataToWrite, data1, data2
     end
 
     always @ (negedge clock)begin
-      if(regWrite == 1)begin
+      if(RegWrite == 1)begin
         registers[reg3] = dataToWrite;
       end
     end

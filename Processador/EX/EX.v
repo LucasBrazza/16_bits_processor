@@ -112,7 +112,7 @@ ULA ulaEx(
 
 muxForwardA fwA(
 	.clock(clock), 
-	.resultadoALU(resultadoALU_MEM), 
+	.outputALU(resultadoALU_MEM), 
 	.resultadoMuxWB(resultadoMux_WB), 
 	.dadoR1(dado1ALU), 
 	.forwardA(saidaAfw), 
@@ -120,9 +120,9 @@ muxForwardA fwA(
 
 muxForwardB fwB(
 	.clock(clock), 
-	.resultadoALU(resultadoALU_MEM), 
+	.outputALU(resultadoALU_MEM), 
 	.resultadoMuxWB(resultadoMux_WB), 
-	.dadoR2(dado2ALU), 
+	.dataRegBank2(dado2ALU), 
 	.forwardB(saidaBfw), 
 	.resposta(saidaMuxB));
 endmodule
