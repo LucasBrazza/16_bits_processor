@@ -1,38 +1,35 @@
-module IFID(clock, PC4, instrucao, IFIDWrite, opcode, rs, rt, rd, shamt, funct, address, addressJump, PC4_out);
+module IFID(clock, IFIDWrite, PC4, outputPC4, instuction, opcode, rs, rt, rd, funct, address, addressJump);
     
     input clock;
-    input [31:0] instrucao;
     input IFIDWrite;
-    input [31:0] PC4;
+    input [15:0] PC4;
+    input [15:0] instuction;
 
-    output reg [5:0] opcode;
-    output reg [31:0] PC4_out;
-    output reg [4:0] rs;
-    output reg [4:0] rt;
-    output reg [4:0] rd;
-    output reg [4:0] shamt;
-    output reg [5:0] funct;
-    output reg [15:0] address;
-    output reg [25:0] addressJump;
+    output reg [15:0] outputPC4;
+    output reg [3:0] opcode;
+    output reg [2:0] rs;
+    output reg [2:0] rt;
+    output reg [2:0] rd;
+    output reg [2:0] funct;
+    output reg [5:0] address;              
+    output reg [12:0] addressJump;         
 
     always @ (posedge clock)begin
-        PC4_out = PC4;
-        opcode = instrucao[31:26];
+        outputPC4 = PC4;
+        opcode = instuction[15:12];
         if(IFIDWrite == 1)begin
-            if(opcode == 6'b000000)begin
-                rs = instrucao[25:21];
-                rt = instrucao[20:16];
-                rd = instrucao[15:11];
-                shamt = instrucao[10:6];
-                funct = instrucao[5:0];
-            end else if(opcode == 6'b100011 || opcode == 6'b101011 ||
-            opcode == 6'b001001 || opcode == 6'b001010 ||
-            opcode == 6'b000100)begin
-                rs = instrucao[25:21];
-                rt = instrucao[20:16];
-                address = instrucao[15:0];  
+            if(opcode == 4'b0001)begin
+                rs = inst[11:9];
+                rt = inst[8:6];
+                rd = inst[5:3];
+                funct = inst[2:0];
+            end 
+            else if(opcode == 4'0001 || opcode == 4'0010 ||opcode == 4'0011)begin
+                rs = inst[11:9];
+                rt = inst[8:6];
+                address = inst[5:0];  
             end else begin
-                addressJump = instrucao[25:0];
+                addressJump = inst[12:0];
             end
         end
     end

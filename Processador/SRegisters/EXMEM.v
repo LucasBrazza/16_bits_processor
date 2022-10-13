@@ -1,46 +1,42 @@
-module EXMEM(clock, resultadoSL2, resultadoALU, dadoR2, rd, regWrite,
-            branch, memRead, memWrite, memtoReg, zero, resultadoSL2_out, 
-            resultadoALU_out, dadoR2_out, rd_out, regWrite_out, branch_out, 
-            memRead_out, memWrite_out, memtoReg_out, zero_out);
+module EXMEM(clock, Branch, MemRead, MemWrite, MemtoReg, Zero, RegWrite, outputShiftLeft, 
+            outputALU, dataRegBank2, muxRegDst, outputShiftLeftOut, outputALUOut, dataRegBank2Out, 
+            muxRegDstOut, BranchOut, MemReadOut, MemWriteOut, MemtoRegOut, ZeroOut, RegWriteOut);
     
     input clock;
+    input Branch;
+    input MemRead;
+    input MemWrite;
+    input MemtoReg;
+    input Zero;
+    input RegWrite;
+    input [15:0] outputShiftLeft;
+    input [15:0] outputALU;
+    input [15:0] dataRegBank2;
+    input [2:0] muxRegDst;
 
-    input [31:0] resultadoSL2;
-    input [31:0] resultadoALU;
-    input [31:0] dadoR2;
-    input [4:0] rd; //resultadomuxEX
-    //input PCSrc;
-    input branch;
-    input memRead;
-    input memWrite;
-    input memtoReg;
-    input zero;
-    input regWrite;
 
-    output reg [31:0] resultadoSL2_out;
-    output reg [31:0] resultadoALU_out;
-    output reg [31:0] dadoR2_out;
-    output reg [4:0] rd_out;
-    //output reg PCSrc_out;
-    output reg branch_out;
-    output reg memRead_out;
-    output reg memWrite_out;
-    output reg memtoReg_out;
-    output reg zero_out;
-    output reg regWrite_out;
+    output reg [15:0] outputShiftLeftOut;
+    output reg [15:0] outputALUOut;
+    output reg [15:0] dataRegBank2Out;
+    output reg [2:0] muxRegDstOut;
+    output reg BranchOut;
+    output reg MemReadOut;
+    output reg MemWriteOut;
+    output reg MemtoRegOut;
+    output reg ZeroOut;
+    output reg RegWriteOut;
 
     always @ (posedge clock)begin
-      resultadoSL2_out = resultadoSL2;
-      resultadoALU_out = resultadoALU;
-      dadoR2_out = dadoR2;
-      rd_out = rd;
-      branch_out = branch;
-      memRead_out = memRead;
-      memWrite_out = memWrite;
-      memtoReg_out = memtoReg;
-      zero_out = zero;
-      regWrite_out = regWrite;
+        outputShiftLeftOut = outputShiftLeft;
+        outputALUOut = outputALU;
+        dataRegBank2Out = dataRegBank2;
+        muxRegDstOut = muxRegDst;
+        BranchOut = Branch;
+        MemReadOut = MemRead;
+        MemWriteOut = MemWrite;
+        MemtoRegOut = MemtoReg;
+        ZeroOut = Zero;
+        RegWriteOut = RegWrite;
     end
-
 
 endmodule

@@ -1,24 +1,25 @@
-module MEMWB(clock, dadoMemoria, resultadoALU, rd, memtoReg, regWrite, dadoMemoria_out, resultadoALU_out, rd_out, memtoReg_out, regWrite_out);
+module MEMWB(clock, MemtoReg, RegWrite, outputDataMem, outputALU, muxRegDst, MemtoRegOut, 
+            RegWriteOut, outputDataMemOut, outputALUOut, muxRegDstOut);
 
     input clock;
+    input MemtoReg;
+    input RegWrite;
+    input [15:0] outputDataMem;
+    input [15:0] outputALU;
+    input [2:0] muxRegDst;
 
-    input [31:0] dadoMemoria;
-    input [31:0] resultadoALU;
-    input [4:0] rd;
-    input memtoReg;
-    input regWrite;
-
-    output reg [31:0] dadoMemoria_out;
-    output reg [31:0] resultadoALU_out;
-    output reg [4:0] rd_out;
-    output reg memtoReg_out;
-    output reg regWrite_out;
+    output reg MemtoRegOut;
+    output reg RegWriteOut;
+    output reg [15:0] outputDataMemOut;
+    output reg [15:0] outputALUOut;
+    output reg [2:0] muxRegDstOut;
 
     always @(negedge clock)begin
-        dadoMemoria_out = dadoMemoria;
-        resultadoALU_out = resultadoALU;
-        rd_out = rd;
-        memtoReg_out = memtoReg;
-        regWrite_out = regWrite;
+        outputDataMemOut = outputDataMem;
+        outputALUOut = outputALU;
+        muxRegDstOut = muxRegDst;
+        MemtoRegOut = MemtoReg;
+        RegWriteOut = RegWrite;
     end
+
 endmodule
