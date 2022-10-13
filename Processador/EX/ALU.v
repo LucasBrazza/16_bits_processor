@@ -1,27 +1,27 @@
-module ALU(clock, entrada1, entrada2, ALUControl, zero, resultado);
+module ALU(clock, input1, input2, ALUControl, zero, result);
 
    input clock;
-   input [15:0]entrada1;
-   input [15:0]entrada2;
+   input [15:0]input1;
+   input [15:0]input2;
    input [2:0]ALUControl;
 
-   output reg [15:0]resultado;
+   output reg [15:0]result;
 	output reg zero;
 	
    always @(posedge clock)
 	 begin
       case(ALUControl)
 		  
-		3'b000: resultado = entrada1 & entrada2;
-        3'b001: resultado = entrada1 | entrada2;
-        3'b010: resultado = entrada1 + entrada2;
-        3'b011: resultado = entrada1 - entrada2;
+		3'b000: result = input1 & input2;
+        3'b001: result = input1 | input2;
+        3'b010: result = input1 + input2;
+        3'b011: result = input1 - input2;
         3'b100: 
 		  begin
-				if (entrada1 < entrada2) begin
-                    resultado = 16'b1;
+				if (input1 < input2) begin
+                    result = 16'b1;
             end else begin
-                    resultado = 16'b0;
+                    result = 16'b0;
             end
 		  end
 
@@ -31,8 +31,8 @@ module ALU(clock, entrada1, entrada2, ALUControl, zero, resultado);
 
  always @(*) 
     begin
-        resultado = ALU(entrada1, entrada2, ALUControl);
-        if (resultado == 0) begin
+        result = ALU(input1, input2, ALUControl);
+        if (result == 0) begin
             zero = 1;
         end else begin
             zero = 0;

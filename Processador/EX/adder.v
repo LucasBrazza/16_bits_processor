@@ -1,11 +1,11 @@
-module Somador(clock, entrada1, entrada2, resultado);
+module adder(clock, input1, input2, resultado);
     input clock;
-    input [15:0]entrada1;
-    input [15:0]entrada2;
+    input [15:0]input1;
+    input [15:0]input2;
 
-    output reg [15:0]resultado;
+    output reg [15:0]result;
 
     always @ (posedge clock or negedge clock)begin
-      resultado = entrada1 + entrada2;
+      result = input1 + input2;
     end 
 endmodule
