@@ -13,19 +13,19 @@ module ALUControl(clock, funct, ALUOp, saida);
         2'b01: saida = 3'b110;
 
         2'b10: case(funct)
-                 6'b100000: saida = 3'b010;
+                 3'b010: saida = 3'b010; //add 
 
-                 6'b100010: saida = 3'b110;
+                 3'b110: saida = 3'b110; // subtract
 
-                 6'b100100: saida = 3'b000;
+                 3'b000: saida = 3'b000; // AND
 
-                 6'b100101: saida = 3'b001;
+                 3'b001: saida = 3'b001; //OR 
 
-                 6'b101010: saida = 3'b111;
+                 3'b111: saida = 3'b111; // SET ON LESS THAN
 
-                 default: $display("Valor de funct não suportada!");
+                 default: $display("Funct value not supported!");
                 endcase
-        default: $display("Valor de ALUOp não suportada!"); 
+        default: $display("ALUOp value not supported!"); 
       endcase
     end
 
