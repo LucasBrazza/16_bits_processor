@@ -1,4 +1,4 @@
-module ULA(clock, entrada1, entrada2, ALUControl, zero, resultado);
+module ALU(clock, entrada1, entrada2, ALUControl, zero, resultado);
 
    input clock;
    input [15:0]entrada1;
@@ -12,7 +12,7 @@ module ULA(clock, entrada1, entrada2, ALUControl, zero, resultado);
 	 begin
       case(ALUControl)
 		  
-		  3'b000: resultado = entrada1 & entrada2;
+		3'b000: resultado = entrada1 & entrada2;
         3'b001: resultado = entrada1 | entrada2;
         3'b010: resultado = entrada1 + entrada2;
         3'b011: resultado = entrada1 - entrada2;
@@ -31,7 +31,7 @@ module ULA(clock, entrada1, entrada2, ALUControl, zero, resultado);
 
  always @(*) 
     begin
-        resultado = ULA(entrada1, entrada2, ALUControl);
+        resultado = ALU(entrada1, entrada2, ALUControl);
         if (resultado == 0) begin
             zero = 1;
         end else begin

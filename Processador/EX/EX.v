@@ -3,7 +3,7 @@
 `include "adder.v"
 `include "Shift_left.v"
 `include "ALUControl.v"
-`include "ULA.v"
+`include "ALU.v"
 `include "muxForwardA.v"
 `include "muxForwardB.v"
 
