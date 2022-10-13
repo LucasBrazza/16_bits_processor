@@ -8,11 +8,11 @@ module ALUControl(clock, funct, ALUOp, saida);
 
     always @ (*)begin
       case(ALUOp)
-        2'b00: saida = 3'b010;
+        2'b00: saida = 3'b010;  //LW SW
 
-        2'b01: saida = 3'b110;
+        2'b01: saida = 3'b110;  //BRANCH
 
-        2'b10: case(funct)
+        2'b10: case(funct)    //R-TYPE
                  3'b010: saida = 3'b010; //add 
 
                  3'b110: saida = 3'b110; // subtract

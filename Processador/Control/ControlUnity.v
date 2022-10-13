@@ -37,7 +37,7 @@ module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, Mem
                 MemRead = 0;
                 MemWrite = 0;
                 Branch = 0;
-                ALUOp = 2'b00;
+                ALUOp = 2'b10;
                 Jump = 0;
             end
             //lw
@@ -49,7 +49,7 @@ module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, Mem
                 MemRead = 1;
                 MemWrite = 0;
                 Branch = 0;
-                ALUOp = 2'b11;
+                ALUOp = 2'b00;
                 Jump = 0;
             end
             //sw
@@ -61,7 +61,7 @@ module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, Mem
                 MemRead = 0;
                 MemWrite = 1;
                 Branch = 0;
-                ALUOp = 2'b11;
+                ALUOp = 2'b00;
                 Jump = 0;
             end
             //branch
