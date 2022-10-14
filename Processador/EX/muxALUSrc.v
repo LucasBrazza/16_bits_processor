@@ -1,17 +1,17 @@
-module muxALUSrc(clock, dado1, dado2, ALUSrc, saida);
+module muxALUSrc(clock, data1, data2, ALUSrc, outputMuxAlu);
 
-    input [15:0]dado1;
-    input [15:0]dado2;
+    input [15:0]data1;
+    input [15:0]data2;
     input ALUSrc;
     input clock;
 
-    output reg [15:0]saida;
+    output reg [15:0]outputMuxAlu;
 
     always @ (posedge clock or negedge clock)begin
       if(ALUSrc == 0)begin
-        saida = dado1;
+        outputMuxAlu = data1;
       end if(ALUSrc == 1)begin
-        saida = dado2;
+        outputMuxAlu = data2;
       end
     end
 endmodule

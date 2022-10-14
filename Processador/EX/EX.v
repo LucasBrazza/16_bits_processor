@@ -76,11 +76,11 @@ Shift_left desloca(
 	.sinal(adress), 
 	.sinal_deslocado(adressSHIFT));
 
-Somador soma(
+adder soma(
 	.clock(clock), 
-	.entrada1(PC2), 
-	.entrada2(adressSHIFT), 
-	.resultado(adderOutput));
+	.input1(PC2), 
+	.input2(adressSHIFT), 
+	.result(adderOutput));
 
 muxALUSrc muxALUSrcEx(
 	.clock(clock), 
@@ -93,7 +93,7 @@ ALUControl ALUCtrl(
 	.clock(clock), 
 	.funct(functEx), 
 	.ALUOp(ALUOpEx), 
-	.saida(outputALUControl));
+	.outputALUControl(outputALUControl));
 
 muxRegDest muxRD(
 	.clock(clock), 
@@ -102,13 +102,13 @@ muxRegDest muxRD(
 	.regDest(regDestEx), 
 	.saida(RD));
 
-ULA ulaEx(
+ALU ulaEx(
 	.clock(clock), 
-	.entrada1(saidaMuxA), 
-	.entrada2(saidaMuxB), 
+	.input1(saidaMuxA), 
+	.input2(saidaMuxB), 
 	.ALUControl(outputALUControl), 
 	.zero(zeroEx), 
-	.resultado(outputALU));
+	.result(outputALU));
 
 muxForwardA fwA(
 	.clock(clock), 
