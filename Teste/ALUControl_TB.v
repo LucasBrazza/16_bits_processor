@@ -1,9 +1,9 @@
-`include "../Processador/ALUControl.v"
+`include "../Processador/EX/ALUControl.v"
 
 module ALUControl_TB;
 
     reg clock;
-    reg [5:0]funct;
+    reg [2:0]funct;
     reg [1:0]ALUOp;
 
     wire [2:0]saida;
@@ -12,7 +12,7 @@ module ALUControl_TB;
       $monitor("clock=%b, funct=%b, ALUOp=%b, saida=%b", clock, funct, ALUOp, saida);
       clock = 0;
       #5 ALUOp <= 2'b10;
-      #5 funct <= 6'b100000;
+      #5 funct <= 3'b000;
       #5 ALUOp <= 2'b01;
       #10 $finish;
     
