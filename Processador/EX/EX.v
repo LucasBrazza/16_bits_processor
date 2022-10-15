@@ -73,8 +73,8 @@ end*/
 
 Shift_left desloca(
 	.clock(clock), 
-	.sinal(adress), 
-	.sinal_deslocado(adressSHIFT));
+	.signal(adress), 
+	.signal_displaced(adressSHIFT));
 
 adder soma(
 	.clock(clock), 
@@ -87,7 +87,7 @@ muxALUSrc muxALUSrcEx(
 	.data1(data2ALU),
 	.data2(adress), 
 	.ALUSrc(ALUSrc_EX), 
-	.saida(saidaMuxALUSrc));
+	.outputMuxAlu(saidaMuxALUSrc));
 
 ALUControl ALUCtrl(
 	.clock(clock), 
@@ -100,7 +100,7 @@ muxRegDest muxRD(
 	.r1(reg2), 
 	.r2(reg3), 
 	.regDest(regDestEx), 
-	.saida(RD));
+	.outputMuxReg(RD));
 
 ALU ulaEx(
 	.clock(clock), 

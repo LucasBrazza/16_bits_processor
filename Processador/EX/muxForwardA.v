@@ -1,19 +1,19 @@
-module muxForwardA(clock, resultadoALU, resultadoMuxWB, dadoR1, forwardA, resposta);
+module muxForwardA(clock, resultALU, resultMuxWB, dataR1, forwardA, response);
 
     input clock;
-    input [15:0] resultadoALU;
-    input [15:0] resultadoMuxWB;
-    input [15:0] dadoR1;
+    input [15:0] resultALU;
+    input [15:0] resultMuxWB;
+    input [15:0] dataR1;
     input [1:0] forwardA;
 
-    output reg [15:0] resposta;
+    output reg [15:0] response;
     always @ (posedge clock)begin
         if(forwardA == 2'b00)begin
-            resposta = dadoR1;
+            response = dataR1;
         end else if(forwardA == 2'b10)begin
-            resposta = resultadoALU;
+            response = resultALU;
         end else if(forwardA == 2'b01) begin
-            resposta = resultadoMuxWB;
+            response = resultMuxWB;
         end
     end
 endmodule

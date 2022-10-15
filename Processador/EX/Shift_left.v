@@ -1,10 +1,10 @@
-module Shift_left(clock, sinal, sinal_deslocado);
+module Shift_left(clock, signal, signal_displaced);
 
     input clock;
-    input [15:0]sinal;
-    output reg [15:0]sinal_deslocado;
+    input [15:0]signal;
+    output reg [15:0]signal_displaced;
 
     always @ (posedge clock)begin
-      sinal_deslocado = sinal<<2;
+      signal_displaced = signal<<2;
     end
 endmodule
