@@ -1,4 +1,4 @@
-module IDEX(clock, clock, RegDst, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, ALUOp, 
+module IDEX(clock, RegDst, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, ALUOp, 
             PC4, dataRegBank1, dataRegBank2, extendedSignal, rt, rd, outputPC4, outputDataRegBank1, 
             outputDataRegBank2, RegDstOut, BranchOut, MemReadOut, MemtoRegOut, ALUOpOut, MemWriteOut, 
             ALUSrcOut, RegWriteOut, outputExtendedSignal, rtOut, rdOut);

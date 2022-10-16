@@ -1,7 +1,8 @@
 `include "DataMemory.v"
 `include "Branch.v"
 
-module MEM(clock, resultULA, writeDataMEM, RegDst, shiftPC, MemRead, MemWrite, Zero, Branch, outputDataReadMEM, PCSrc, outputMemULA, outputRegDst, outputShiftPC);
+module MEM(clock, resultULA, writeDataMEM, RegDst, shiftPC, MemRead, MemWrite, Zero, Branch, 
+            outputDataReadMEM, PCSrc, outputMemULA, outputRegDst, outputShiftPC);
 
     input clock;
     input MemRead;
