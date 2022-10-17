@@ -33,15 +33,6 @@ module ALU(clock, input1, input2, ALUControl, zero, result);
       endcase
 	end
 
- always @(*) 
-    begin
-        result = ALU(input1, input2, ALUControl);
-        if (result == 0) begin
-            zero = 1;
-        end else begin
-            zero = 0;
-        end
-    end
 
 	
 endmodule

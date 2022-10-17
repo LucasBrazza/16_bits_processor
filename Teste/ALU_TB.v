@@ -14,7 +14,7 @@ module ALU_TB;
 		clock = 0;
 		entrada1 = 16'b0000000000000011;
 		entrada2 = 16'b0000000000000001;
-		ALUControl <= 3'b010;
+		ALUControl <= 3'b110;
 		#10 $finish;
     end
     

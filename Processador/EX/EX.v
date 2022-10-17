@@ -12,7 +12,7 @@ module EX(clock, PC4, data1ALU, data2ALU, adress, reg2, reg3, ALUSrc_EX, ALUOpEx
 
 input  clock;
 //entradas do módulo
-input [15:0]PC2;
+input [15:0]PC4;
 input [15:0]data1ALU;
 input [15:0]data2ALU;
 input [15:0]adress;
@@ -34,8 +34,7 @@ reg [2:0]functEx;
 wire [15:0]adressSHIFT;
 wire [15:0]saidaMuxALUSrc;
 wire [2:0]outputALUControl;
-//wire [1:0]outputAfw;
-//wire [1:0]outputBfw;
+
 wire [15:0]saidaMuxA;
 wire [15:0]saidaMuxB;
 
@@ -50,26 +49,26 @@ always @(*)begin
   data2ALU_out = data2ALU;
 end
 
-/*initial begin
-  $monitor("clock = %b \n data1 = %b \n data2 = %b \n adress = %b \n adress deslocado = %b \n reg2 = %b \n reg3 = %b \n ALUSrc = %b \n funct = %b \n ALUOp = %b \n regDest = %b \n PC2 = %b \n saida somador = %b \n saida ULA = %b \n saida reg dest = %b \n", clock, daddataU, data2ALU, adress, adressSHIFT, reg2, reg3, ALUSrc_EX, functEx, ALUOpEx, regDestEx, PC2, adderOutput, outputALU, RD);
+initial begin
+  $monitor("clock = %b \n data1 = %b \n data2 = %b \n adress = %b \n adress deslocado = %b \n reg2 = %b \n reg3 = %b \n ALUSrc = %b \n funct = %b \n ALUOp = %b \n regDest = %b \n PC2 = %b \n saida somador = %b \n saida ULA = %b \n saida reg dest = %b \n", clock, data1ALU, data2ALU, adress, adressSHIFT, reg2, reg3, ALUSrc_EX, functEx, ALUOpEx, regDestEx, PC4, adderOutput, outputALU, RD);
           clock = 0;
-          #5 PC2 =  32'b00000000000000000000000001010101;
+          #5 PC4 =  16'b0000000001010101;
           ALUSrc_EX = 0;
           ALUOpEx = 2'b00;
           regDestEx = 0;
-          reg2 = 5'b00010;
-          reg3 = 5'b00011;
-          daddataU = 32'b00000000000000000000000000000001;
-          data2ALU = 32'b00000000000000000000000000000001;
-          adress = 32'b00000000000000000000000000100000;
-          functEx = adress[5:0];
+          reg2 = 3'b010;
+          reg3 = 3'b011;
+          data1ALU = 16'b0000000000000001;
+          data2ALU = 16'b0000000000000001;
+          adress =   16'b0000000000100000;
+          functEx = adress[2:0];
           #20 clock = 0;
           $finish;
 end
 
 initial begin
   #5 clock = ~clock;
-end*/
+end
 
 Shift_left desloca(
 	.clock(clock), 
@@ -78,7 +77,7 @@ Shift_left desloca(
 
 adder soma(
 	.clock(clock), 
-	.input1(PC2), 
+	.input1(PC4), 
 	.input2(adressSHIFT), 
 	.result(adderOutput));
 
@@ -110,19 +109,4 @@ ALU ulaEx(
 	.zero(zeroEx), 
 	.result(outputALU));
 
-muxForwardA fwA(
-	.clock(clock), 
-	.outputALU(result_ALU_MEM), 
-	.resultadoMuxWB(result_MUX_WB), 
-	.dataR1(data1ALU), 
-	.forwardA(outputAfw), 
-	.resposta(saidaMuxA));
-
-muxForwardB fwB(
-	.clock(clock), 
-	.outputALU(result_ALU_MEM), 
-	.resultadoMuxWB(result_MUX_WB), 
-	.dataRegBank2(data2ALU), 
-	.forwardB(outputBfw), 
-	.resposta(saidaMuxB));
 endmodule
