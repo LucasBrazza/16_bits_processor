@@ -52,4 +52,4 @@ module ID_TB;
       .extendedSignal(exSig), 
       .PC4_outpuID(PC4OUT));
 
-endmodule // banco_registradores_tb
+endmodule
