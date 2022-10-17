@@ -1,7 +1,7 @@
 module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
     
     input clock;
-    input [2:0] opcode;
+    input [3:0] opcode;
 
     output reg RegDst;
     output reg Branch;
@@ -65,7 +65,7 @@ module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, Mem
                 Jump = 0;
             end
             //branch
-            4'b0001: begin
+            4'b0100: begin
                 RegDst = 0;
                 ALUSrc = 0;
                 MemtoReg = 0;

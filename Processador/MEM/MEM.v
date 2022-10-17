@@ -1,7 +1,8 @@
-`include "DataMemory.v"
-`include "Branch.v"
+`include "../Processador\MEM\DataMemory.v"
+`include "../Processador\MEM\Branch.v"
 
-module MEM(clock, resultULA, writeDataMEM, RegDst, shiftPC, MemRead, MemWrite, Zero, Branch, outputDataReadMEM, PCSrc, outputMemULA, outputRegDst, outputShiftPC);
+module MEM(clock, resultULA, writeDataMEM, RegDst, shiftPC, MemRead, MemWrite, Zero, Branch, 
+            outputDataReadMEM, PCSrc, outputMemULA, outputRegDst, outputShiftPC);
 
     input clock;
     input MemRead;
@@ -24,34 +25,6 @@ module MEM(clock, resultULA, writeDataMEM, RegDst, shiftPC, MemRead, MemWrite, Z
         outputRegDst = RegDst;
         outputShiftPC = shiftPC;
     end
-
-    /*initial begin
-      $monitor("clock = %b \nendereco = %b \ndado escrita = %b \nRD = %b \nPC desvio = %b\nmemRead = %b \nmemWrite = %b \nzero = %b \nM = %b \ndado lido = %b \nbranch = %b\n\n",
-      clock, outputMemULA, writeDataMEM, RegDst, shiftPC, MemRead, MemWrite, Zero, M, dadoLidoMem, branchMem);
-      clock = 0;
-      #5 outputMemULA = 0;
-      MemWrite = 1;
-      writeDataMEM = 0;
-      RegDst = 5'b00001;
-      shiftPC = 4;
-      MemRead = 0;
-      Zero = 1;
-      M = 0;
-      #10 outputMemULA = 0;
-      MemRead = 1;
-      MemWrite = 0;
-      writeDataMEM = 1;
-      RegDst = 5'b00010;
-      shiftPC = 8;
-      Zero = 1; 
-      M = 1;
-      #10 $finish;
-
-    end
-
-    always begin
-        #5 clock = !clock;
-    end*/
 
     DataMemory dataMem(
         .clock(clock),
