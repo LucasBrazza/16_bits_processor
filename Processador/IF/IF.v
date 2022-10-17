@@ -1,7 +1,7 @@
-`include "PC.v"
-`include "AddPC4.v"
-`include "InstructionMemory.v"
-`include "MuxIF.v"
+`include "../Processador\IF\PC.v"
+`include "../Processador\IF\AddPC4.v"
+`include "../Processador\IF\InstructionMemory.v"
+`include "../Processador\IF\MuxIF.v"
 
 module IF(clock, shiftAddress, PCSrc, outputPC4, outputMEM);
 
@@ -15,21 +15,6 @@ module IF(clock, shiftAddress, PCSrc, outputPC4, outputMEM);
     output wire [15:0]outputPC4;
     output wire [15:0]outputMEM;
 
-
-    /*initial begin
-      $monitor("clock = %b \n saida mux = %b \n saida PC = %b \n saida PC4 = %b \n Instrucao = %b", clock, outputMux,
-      outputPC, outputPC4, outputMEM);
-      clock = 0;
-      PCSrc = 0;
-      shiftAddress = 0;
-      #10 PCSrc = 0;
-      #35 clock = 0;
-      $finish;
-    end
-
-    always begin
-      #5 clock = ~clock;
-    end*/
 
     MuxIF mux(
         .clock(clock),

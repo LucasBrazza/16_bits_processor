@@ -7,7 +7,7 @@ module MuxIF(clock, PCSrc, inputPC4Mux, signalShifted, response);
 
     output reg [15:0]response;
 
-    always @ (negedge clock or posedge clock)begin
+    always @ (*)begin
         if(PCSrc == 0)begin
             response <= inputPC4Mux;
         end if(PCSrc == 1)begin
