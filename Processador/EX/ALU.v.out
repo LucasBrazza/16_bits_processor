@@ -7,7 +7,7 @@
 :vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
 :vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
 :vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
-S_00000269ac816c50 .scope module, "ALU" "ALU" 2 1;
+S_000001d9770f97f0 .scope module, "ALU" "ALU" 2 1;
  .timescale 0 0;
     .port_info 0 /INPUT 1 "clock";
     .port_info 1 /INPUT 16 "input1";
@@ -15,22 +15,21 @@ S_00000269ac816c50 .scope module, "ALU" "ALU" 2 1;
     .port_info 3 /INPUT 3 "ALUControl";
     .port_info 4 /OUTPUT 1 "zero";
     .port_info 5 /OUTPUT 16 "result";
-o00000269ac9c6fd8 .functor BUFZ 3, C4<zzz>; HiZ drive
-v00000269ac816e50_0 .net "ALUControl", 2 0, o00000269ac9c6fd8;  0 drivers
-o00000269ac9c7008 .functor BUFZ 1, C4<z>; HiZ drive
-v00000269ac816ef0_0 .net "clock", 0 0, o00000269ac9c7008;  0 drivers
-o00000269ac9c7038 .functor BUFZ 16, C4<zzzzzzzzzzzzzzzz>; HiZ drive
-v00000269ac9c3600_0 .net "input1", 15 0, o00000269ac9c7038;  0 drivers
-o00000269ac9c7068 .functor BUFZ 16, C4<zzzzzzzzzzzzzzzz>; HiZ drive
-v00000269ac9c36a0_0 .net "input2", 15 0, o00000269ac9c7068;  0 drivers
-v00000269ac9c3740_0 .var "result", 15 0;
-v00000269ac9c37e0_0 .var "zero", 0 0;
-E_00000269ac9c5e70 .event "_ivl_2";
-E_00000269ac9c62b0 .event posedge, v00000269ac816ef0_0;
-    .scope S_00000269ac816c50;
+o000001d976fe6fd8 .functor BUFZ 3, C4<zzz>; HiZ drive
+v000001d9770f6af0_0 .net "ALUControl", 2 0, o000001d976fe6fd8;  0 drivers
+o000001d976fe7008 .functor BUFZ 1, C4<z>; HiZ drive
+v000001d9770fbd50_0 .net "clock", 0 0, o000001d976fe7008;  0 drivers
+o000001d976fe7038 .functor BUFZ 16, C4<zzzzzzzzzzzzzzzz>; HiZ drive
+v000001d9770fbdf0_0 .net "input1", 15 0, o000001d976fe7038;  0 drivers
+o000001d976fe7068 .functor BUFZ 16, C4<zzzzzzzzzzzzzzzz>; HiZ drive
+v000001d9770fbe90_0 .net "input2", 15 0, o000001d976fe7068;  0 drivers
+v000001d9770fbf30_0 .var "result", 15 0;
+v000001d976fe25e0_0 .var "zero", 0 0;
+E_000001d976fe5cb0 .event posedge, v000001d9770fbd50_0;
+    .scope S_000001d9770f97f0;
 T_0 ;
-    %wait E_00000269ac9c62b0;
-    %load/vec4 v00000269ac816e50_0;
+    %wait E_000001d976fe5cb0;
+    %load/vec4 v000001d9770f6af0_0;
     %dup/vec4;
     %pushi/vec4 0, 0, 3;
     %cmp/u;
@@ -54,51 +53,46 @@ T_0 ;
     %vpi_call 2 32 "$display", "Value not supported!" {0 0 0};
     %jmp T_0.6;
 T_0.0 ;
-    %load/vec4 v00000269ac9c3600_0;
-    %load/vec4 v00000269ac9c36a0_0;
+    %load/vec4 v000001d9770fbdf0_0;
+    %load/vec4 v000001d9770fbe90_0;
     %and;
-    %store/vec4 v00000269ac9c3740_0, 0, 16;
+    %store/vec4 v000001d9770fbf30_0, 0, 16;
     %jmp T_0.6;
 T_0.1 ;
-    %load/vec4 v00000269ac9c3600_0;
-    %load/vec4 v00000269ac9c36a0_0;
+    %load/vec4 v000001d9770fbdf0_0;
+    %load/vec4 v000001d9770fbe90_0;
     %or;
-    %store/vec4 v00000269ac9c3740_0, 0, 16;
+    %store/vec4 v000001d9770fbf30_0, 0, 16;
     %jmp T_0.6;
 T_0.2 ;
-    %load/vec4 v00000269ac9c3600_0;
-    %load/vec4 v00000269ac9c36a0_0;
+    %load/vec4 v000001d9770fbdf0_0;
+    %load/vec4 v000001d9770fbe90_0;
     %add;
-    %store/vec4 v00000269ac9c3740_0, 0, 16;
+    %store/vec4 v000001d9770fbf30_0, 0, 16;
     %jmp T_0.6;
 T_0.3 ;
-    %load/vec4 v00000269ac9c3600_0;
-    %load/vec4 v00000269ac9c36a0_0;
+    %load/vec4 v000001d9770fbdf0_0;
+    %load/vec4 v000001d9770fbe90_0;
     %sub;
-    %store/vec4 v00000269ac9c3740_0, 0, 16;
+    %store/vec4 v000001d9770fbf30_0, 0, 16;
     %jmp T_0.6;
 T_0.4 ;
-    %load/vec4 v00000269ac9c3600_0;
-    %load/vec4 v00000269ac9c36a0_0;
+    %load/vec4 v000001d9770fbdf0_0;
+    %load/vec4 v000001d9770fbe90_0;
     %cmp/u;
     %jmp/0xz  T_0.7, 5;
     %pushi/vec4 1, 0, 16;
-    %store/vec4 v00000269ac9c3740_0, 0, 16;
+    %store/vec4 v000001d9770fbf30_0, 0, 16;
     %jmp T_0.8;
 T_0.7 ;
     %pushi/vec4 0, 0, 16;
-    %store/vec4 v00000269ac9c3740_0, 0, 16;
+    %store/vec4 v000001d9770fbf30_0, 0, 16;
 T_0.8 ;
     %jmp T_0.6;
 T_0.6 ;
     %pop/vec4 1;
     %jmp T_0;
     .thread T_0;
-    .scope S_00000269ac816c50;
-T_1 ;
-    %wait E_00000269ac9c5e70;
-    %jmp T_1;
-    .thread T_1;
 # The file index is used to find the file name in the following table.
 :file_names 3;
     "N/A";

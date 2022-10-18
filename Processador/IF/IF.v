@@ -1,12 +1,12 @@
-`include "../Processador\IF\PC.v"
-`include "../Processador\IF\AddPC4.v"
-`include "../Processador\IF\InstructionMemory.v"
-`include "../Processador\IF\MuxIF.v"
+`include "PC.v"
+`include "AddPC4.v"
+`include "InstructionMemory.v"
+`include "MuxIF.v"
 
 module IF(clock, shiftAddress, PCSrc, outputPC4, outputMEM);
 
     input clock;
-    input [15:0]shiftAddress;
+    input [15:0] shiftAddress;
     input PCSrc;
 
     wire [15:0]outputMux;
