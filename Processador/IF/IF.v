@@ -3,7 +3,7 @@
 `include "InstructionMemory.v"
 `include "MuxIF.v"
 
-module IF(clock, shiftAddress, PCSrc, outputPC4, outputMEM);
+module IF(clock, shiftAddress, PCSrc, outputPC4, outputIstruction);
 
     input clock;
     input [15:0] shiftAddress;
@@ -13,7 +13,7 @@ module IF(clock, shiftAddress, PCSrc, outputPC4, outputMEM);
     wire [15:0]outputPC;
 
     output wire [15:0]outputPC4;
-    output wire [15:0]outputMEM;
+    output wire [15:0]outputIstruction;
 
 
     MuxIF mux(
@@ -36,6 +36,6 @@ module IF(clock, shiftAddress, PCSrc, outputPC4, outputMEM);
     InstructionMemory memIn(
         .clock(clock),
         .endereco(outputPC4),
-        .instrucaoOut(outputMEM));
+        .instrucaoOut(outputIstruction));
 
 endmodule

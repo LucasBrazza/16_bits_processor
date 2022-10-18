@@ -1,27 +1,22 @@
 `include "../Processador\ID\RegisterBank.v"
 `include "../Processador\ID\SignalExtensor.v"
 
-module ID(clock, rs, rt, rd, funct, addressjump, PC4, writeDat, RegWrite, readData1, 
-            readData2, extendedSignal, PC4_outpuID);
+module ID(clock, rs, rt, rd, funct, signalToExtend, dataToWrite, RegWrite, readData1, 
+            readData2, extendedSignal);
 
     input clock;
     input RegWrite;
-    input [15:0]PC4;
     input [2:0]rs;
     input [2:0]rt;
     input [2:0]rd;
     input [1:0]funct;
-    input [7:0]addressjump;
-    input [15:0]writeDat;
+    input [5:0]signalToExtend;
+    input [15:0]dataToWrite;
 
     output [15:0]readData1;
     output [15:0]readData2;
     output [15:0]extendedSignal;
-    output reg [15:0]PC4_outpuID;
 
-    initial begin
-        PC4_outpuID = PC4;
-    end
 
     RegisterBank bank(
         .clock(clock), 
@@ -29,13 +24,13 @@ module ID(clock, rs, rt, rd, funct, addressjump, PC4, writeDat, RegWrite, readDa
         .reg1(rs), 
         .reg2(rt), 
         .reg3(rd), 
-        .dataToWrite(writeDat), 
+        .dataToWrite(dataToWrite), 
         .data1(readData1), 
         .data2(readData2));
 
     SignalExtensor extensor(
         .clock(clock), 
-        .signal8(addressjump), 
+        .signal6(signalToExtend), 
         .signal16(extendedSignal));
 
 endmodule

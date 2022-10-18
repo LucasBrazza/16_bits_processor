@@ -1,4 +1,4 @@
-module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
+module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite, Jump);
     
     input clock;
     input [3:0] opcode;
