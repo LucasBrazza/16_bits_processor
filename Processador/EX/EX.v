@@ -1,52 +1,66 @@
-`include "muxALUSrc.v"
-`include "muxRegDest.v"
+`include "../Control/MUX.v"
 `include "adder.v"
-`include "Shift_left.v"
+`include "ShiftLeft.v"
 `include "ALUControl.v"
 `include "ALU.v"
-`include "muxForwardA.v"
-`include "muxForwardB.v"
-
-module EX(clock, PC4, data1ALU, data2ALU, address, reg2, reg3, ALUSrc_EX, ALUOpEx, regDestEx, RD, 
-          adderOutput, outputALU, zeroEx, data2ALU_out, result_ALU_MEM, result_MUX_WB,);
-
-input  clock;
-//entradas do módulo
-input [15:0]PC4;
-input [15:0]data1ALU;
-input [15:0]data2ALU;
-input [15:0]address;
-input [2:0]reg2;
-input [2:0]reg3;
-input ALUSrc_EX;
-input [1:0]ALUOpEx;
-input regDestEx;
-input [15:0]result_ALU_MEM;
-input [15:0]result_MUX_WB;
-input [1:0]outputAfw;
-input [1:0]outputBfw;
-
-reg [2:0]functEx;
 
 
-//saidas dos modulos internos
+module EX(clock, Branch, Zero, nextAddress, PC4, funct, ALUOp, dataID1, dataID2, jumpResult, 
+            outputBranch, outputALU);
 
-wire [15:0]addressSHIFT;
-wire [15:0]saidaMuxALUSrc;
-wire [2:0]outputALUControl;
 
-wire [15:0]saidaMuxA;
-wire [15:0]saidaMuxB;
+    input clock;
+    input Branch;
+    input [15:0]nextAddress;
+    input [15:0]PC4;
+    input [2:0]funct;
+    input [1:0]ALUOp;
+    input [15:0]dataID1;
+    input [15:0]dataID2;
 
-output [2:0]RD;
-output [15:0]adderOutput;
-output [15:0]outputALU;
-output zeroEx;
-output reg [15:0]data2ALU_out;
+    output [15:0]outputALU;
+    output [15:0]outputBranch;
+    output Zero;
 
-always @(*)begin
-  functEx = address[2:0];
-  data2ALU_out = data2ALU;
-end
+    reg [15:0]outputALUSrc;
+    reg [2:0]outputALUControl;
+    reg [15:0]shiftedAddress;
+
+
+    ShiftLeft shift(
+        .clock(clock), 
+        .signal(nextAddress), 
+        .shiftedSignal(shiftedAddress));
+
+
+    Adder adder(
+        .clock(clock), 
+        .input1(PC4), 
+        .input2(shiftedAddress), 
+        .result(jumpResult));
+
+
+    MUX muxALU(
+        .clock(clock), 
+        .data1(dataID2),
+        .data2(nextAddress), 
+        .ctrl(ALUSrc), 
+        .outputMUX(outputALUSrc));
+
+
+    ALUControl ALUCtrl(
+        .clock(clock), 
+        .ALUOp(funct), 
+        .funct(ALUOp), 
+        .outputALUControl(outputALUControl));
+
+
+    ALU alu(
+        .clock(clock), 
+        .input1(dataID1), 
+        .input2(outputALUSrc), 
+        .ALUControl(outputALUControl), 
+        .result(Zero), 
+        .Zero(outputALU));
 
 endmodule

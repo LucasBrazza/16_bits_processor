@@ -1,4 +1,4 @@
-module ALU(clock, input1, input2, ALUControl, zero, result);
+module ALU(clock, input1, input2, ALUControl, Zero, result);
 
     input clock;
     input [15:0]input1;
@@ -6,7 +6,7 @@ module ALU(clock, input1, input2, ALUControl, zero, result);
     input [2:0]ALUControl;
 
     output reg [15:0]result;
-    output reg zero;
+    output reg Zero;
         
     always @(posedge clock)
         begin
@@ -33,6 +33,14 @@ module ALU(clock, input1, input2, ALUControl, zero, result);
         endcase
         end
 
+    always @(*) 
+        begin
+            if (result == 0) begin
+                Zero = 1;
+            end else begin
+                Zero = 0;
+            end
+        end
 
 
 	

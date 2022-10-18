@@ -220,8 +220,8 @@ module Processador(instruction);
 	EX exmain(
 		.clock(), 
 		.PC4(), 
-		.data1ALU(), 
-		.data2ALU(), 
+		.inputALU1(), 
+		.inputALU2(), 
 		.address(), 
 		.reg2(), 
 		.reg3(), 

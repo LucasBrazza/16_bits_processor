@@ -1,4 +1,4 @@
-module adder(clock, input1, input2, result);
+module Adder(clock, input1, input2, result);
     input clock;
     input [15:0]input1;
     input [15:0]input2;
