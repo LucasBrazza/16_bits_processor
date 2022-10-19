@@ -1,6 +1,7 @@
-`include "../Processador/EX/adder.v"
+`include "../Adder.v"
 
-module adder_TB;
+
+module Adder_TB;
     reg clock;
     reg [15:0]entrada1;
     reg [15:0]entrada2;
@@ -19,6 +20,6 @@ module adder_TB;
       #5 clock = !clock;
     end
 
-    adder UO(clock, entrada1, entrada2, resultado);
+    Adder UO(clock, entrada1, entrada2, resultado);
 
 endmodule

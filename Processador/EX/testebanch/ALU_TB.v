@@ -1,4 +1,4 @@
-`include "../Processador/EX/ALU.v"
+`include "../ALU.v"
 
 module ALU_TB;
 	
