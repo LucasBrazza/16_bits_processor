@@ -1,8 +1,8 @@
-`include "../Processador\MEM\DataMemory.v"
-`include "../Processador\MEM\Branch.v"
+`include "DataMemory.v"
+`include "Branch.v"
 
-module MEM(clock, MemRead, MemWrite, Zero, Branch, address, writeData, RegDst, shiftPC, 
-            PCSrc, outputMEM);
+module MEM(clock, MemRead, MemWrite, Zero, Branch, address, writeData, RegDst, 
+            PCSrc);
 
     input clock;
     input MemRead;
