@@ -8,7 +8,7 @@ module InstructionMemory(address, instructionOutput, clock);
     reg [15:0]instructions;
 
     initial begin
-      instructionOutput=16'b0001110111000010;
+      instructionOutput=16'b0001001000010010;
     end
     
     

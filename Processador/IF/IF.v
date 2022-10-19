@@ -25,8 +25,8 @@ module IF(clock, shiftAddress, PCSrc, outputPC4, outputIstruction);
 
     PC pc(
         .clock(clock),
-        .entrada(outputMux), 
-        .saida(outputPC));
+        .inp(outputMux), 
+        .outp(outputPC));
 
     AddPC4 pc4(	
         .clock(clock), 
@@ -35,7 +35,7 @@ module IF(clock, shiftAddress, PCSrc, outputPC4, outputIstruction);
 
     InstructionMemory memIn(
         .clock(clock),
-        .endereco(outputPC4),
-        .instrucaoOut(outputIstruction));
+        .address(outputPC4),
+        .instructionOutput(outputIstruction));
 
 endmodule

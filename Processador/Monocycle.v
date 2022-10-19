@@ -1,8 +1,8 @@
-`include "\IF\IF.v"
-`include "\ID\ID.v"
-`include "\EX\EX.v"
-`include "\MEM\MEM.v"
-`include "\WB\WB.v"
+`include "IF\IF.v"
+`include "ID\ID.v"
+`include "EX\EX.v"
+`include "MEM\MEM.v"
+`include "WB\WB.v"
 
 module Monociclo;
 
@@ -126,5 +126,8 @@ module Monociclo;
         .outputWB(dataToWriteFromWB)
     );
 
+    always @ (*) begin
+        $monitor("é pra ser resultado 011 -> %b", dataToWriteFromWB);
+    end
 
 endmodule
