@@ -84,6 +84,7 @@ module Monociclo;
         .signalToExtend(instruction_outputIF[5:0]),
         .dataToWrite(dataToWriteFromWB),
         .RegWrite(RegWrite),
+        .RegDst(RegDst),
         .readData1(readData1_outputID),
         .readData2(readData2_outputID),
         .extendedSignal(extdSignal_outputID),
