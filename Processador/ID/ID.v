@@ -1,5 +1,6 @@
-`include "../Processador\ID\RegisterBank.v"
-`include "../Processador\ID\SignalExtensor.v"
+`include "RegisterBank.v"
+`include "SignalExtensor.v"
+`include "MUXRegisters.v"
 
 module ID(clock, rs, rt, rd, funct, signalToExtend, dataToWrite, RegWrite, RegDst, readData1, 
             readData2, extendedSignal);
