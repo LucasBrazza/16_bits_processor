@@ -43,6 +43,14 @@ module Monociclo;
 
 
     //FAZER CLOCK
+    initial begin
+        clock = 0;
+        #50 $finish;
+	end
+
+	always begin
+	    #5 clock = ~clock;
+	end
 
 
     IF ifmain (
@@ -116,5 +124,6 @@ module Monociclo;
         .resultALU(resultALU_outputEX),
         .outputWB(dataToWriteFromWB)
     );
+
 
 endmodule
