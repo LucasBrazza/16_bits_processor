@@ -76,7 +76,17 @@ module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, Mem
                 ALUOp = 2'b01;
                 Jump = 0;
             end
-//            default: $display("opcode incorrect.");
+            default: begin
+                RegDst = 1;
+                ALUSrc = 0;
+                MemtoReg = 0;
+                RegWrite = 1;
+                MemRead = 0;
+                MemWrite = 0;
+                Branch = 0;
+                ALUOp = 2'b10;
+                Jump = 0;
+            end
         endcase
     end
 endmodule

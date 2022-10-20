@@ -59,17 +59,12 @@ module Monocycle;
 	end
 
     always @ (posedge clock) begin
-      //  $display("------------------");
-        //$display("Borda de subida");
-        $display("inst  %b",PCSrc );
-       // $display("alur  %b",resultALU_outputEX );   */
         PCScr_inputIF = PCSrc;
         dataToWriteFromWB = dataToWriteOnID;
         shiftAddress_inputIF = shiftAddress_outputEX;
 	end
 
-    always @ (posedge clock) begin
-	    $monitor("Borda de descida %b",dataToWriteFromWB);
+    always @ (negedge clock) begin
         PCScr_inputIF = PCSrc;
         dataToWriteFromWB = dataToWriteOnID;
         shiftAddress_inputIF = shiftAddress_outputEX;

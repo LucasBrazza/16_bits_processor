@@ -10,13 +10,20 @@ module ALUControl(clock, funct, ALUOp, outputALUControl);
         case(ALUOp)
             2'b00: outputALUControl = 3'b010;  //LW SW
 
-            2'b01: outputALUControl = 3'b110;  //BRANCH
+            2'b01: begin
+                if(funct==3'b010) begin
+                    outputALUControl = 3'b011;  //bne
+                end
+                else begin
+                    outputALUControl = 3'b110;  //beq
+                end
+            end 
 
             2'b10: outputALUControl = funct;    //R-TYPE
 
             2'b11: outputALUControl = 3'b010;
 
-//            default: $display("ALUOp value not supported!"); 
+            default: outputALUControl = 3'b010; 
         endcase
     end
 

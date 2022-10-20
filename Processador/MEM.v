@@ -20,7 +20,7 @@ module MEM(clock, MemRead, MemWrite, Zero, Branch, address, writeData, RegDst, P
         .clock(clock),
         .MemRead(MemRead),
         .MemWrite(MemWrite),
-        .address(address),
+        .address(address[8:1]),
         .writeData(writeData),
         .dataRead(outputDataRead));
 
