@@ -50,15 +50,19 @@ module Monocycle;
         clock = 0;
         shiftAddress_inputIF = 16'b0;
         PCScr_inputIF = 1;
-        #40 $finish;
+        #500 $finish;
 	end
 
 	always begin
-        #5 clock = ~clock;
+        #10 clock = ~clock;
+        #20 clock = ~clock;
 	end
 
     always @ (posedge clock) begin
-	    $monitor("Borda de subida %b",instruction_outputIF);
+      //  $display("------------------");
+        //$display("Borda de subida");
+        $display("inst  %b",PCSrc );
+       // $display("alur  %b",resultALU_outputEX );   */
         PCScr_inputIF = PCSrc;
         dataToWriteFromWB = dataToWriteOnID;
         shiftAddress_inputIF = shiftAddress_outputEX;
@@ -114,6 +118,7 @@ module Monocycle;
         .clock(clock),
         .Branch(Branch),
         .Zero(Zero),
+        .ALUSrc(ALUSrc),
         .nextAddress(extdSignal_outputID),
         .PC4(PC4_outpuIF),
         .funct(instruction_outputIF[2:0]),

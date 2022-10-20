@@ -18,10 +18,11 @@ module IF(clock, shiftAddress, PCSrc, outputIstruction, outputMux);
     reg [15:0]outputMux_inpPC;
 
     initial begin
-        outputMux_inpPC = 16'b0; 
+        outputMux_inpPC = 16'b0000000000000000; 
     end
 
-    always @(outputMux)begin
+    always @(posedge clock)begin
+        //$monitor("%b", outputPC);
         outputMux_inpPC = outputMux;
     end
 
@@ -32,10 +33,9 @@ module IF(clock, shiftAddress, PCSrc, outputIstruction, outputMux);
         .signalShifted(shiftAddress),
         .response(outputMux));
 
-
     PC pc(
         .clock(clock),
-        .inp(outputMux), 
+        .inp(outputMux_inpPC), 
         .outp(outputPC));
 
     AddPC4 pc4(	
@@ -45,7 +45,7 @@ module IF(clock, shiftAddress, PCSrc, outputIstruction, outputMux);
 
     InstructionMemory memIn(
         .clock(clock),
-        .address(outputPC),
+        .address(outputPC[3:0]),
         .instructionOutput(outputIstruction));
 
 endmodule

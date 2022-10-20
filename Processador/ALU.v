@@ -8,40 +8,29 @@ module ALU(clock, input1, input2, ALUControl, Zero, result);
     output reg [15:0]result;
     output reg Zero;
         
-    always @(posedge clock)
-        begin
+    always @(*) begin
         case(ALUControl)
             
-            3'b000: result = input1 & input2;   //AND
+            3'b000: result <= input1 & input2;   //AND
 
-            3'b001: result = input1 | input2;   //OR
+            3'b001: result <= input1 | input2;   //OR
 
-            3'b010: result = input1 + input2;   //ADD
+            3'b010: result <= input1 + input2;   //ADD
 
-            3'b110: result = input1 - input2;   //SUB
+            3'b110: result <= input1 - input2;   //SUB
 
             3'b111:                             //SLT             
             begin
                     if (input1 < input2) begin
-                        result = 16'b1;
+                        result <= 16'b1;
                 end else begin
-                        result = 16'b0;
+                        result <= 16'b0;
                 end
             end
 
             //default: $display("Value not supported!");
         endcase
-        end
+        Zero = (result == 16'b0 ? 1 : 0);
+    end
 
-    always @(*) 
-        begin
-            if (result == 0) begin
-                Zero = 1;
-            end else begin
-                Zero = 0;
-            end
-        end
-
-
-	
 endmodule

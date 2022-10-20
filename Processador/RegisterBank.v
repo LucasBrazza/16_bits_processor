@@ -35,6 +35,6 @@ module RegisterBank(clock, RegWrite, rs, rt, rd, dataToWrite, data1, data2);
         if(RegWrite == 1)begin
             registers[reg3] <= dataToWrite;
         end
-        $monitor("aaa %b",RegWrite);
+//        $monitor("aaa %b",RegWrite);
     end
 endmodule

@@ -15,6 +15,7 @@ module MEM(clock, MemRead, MemWrite, Zero, Branch, address, writeData, RegDst, P
     output PCSrc;
     output [15:0]outputDataRead;
 
+
     DataMemory dataMem(
         .clock(clock),
         .MemRead(MemRead),

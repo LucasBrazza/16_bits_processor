@@ -5,12 +5,13 @@
 `include "ALU.v"
 
 
-module EX(clock, Branch, Zero, nextAddress, PC4, funct, ALUOp, dataID1, dataID2, jumpResult, 
+module EX(clock, Branch, Zero, ALUSrc, nextAddress, PC4, funct, ALUOp, dataID1, dataID2, jumpResult, 
             outputBranch, outputALU);
 
 
     input clock;
     input Branch;
+    input ALUSrc;
     input [15:0]nextAddress;
     input [15:0]PC4;
     input [2:0]funct;
