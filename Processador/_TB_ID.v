@@ -14,7 +14,7 @@ module _TB_ID;
 
    initial begin
 		clock = 0;
-      instruction = 16'b0010010010111010;
+      instruction = 16'b0010001010111010;
       dataToWrite = 16'b0011000111101011;
       RegWrite = 0;
       #25 $finish;

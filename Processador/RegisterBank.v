@@ -17,14 +17,6 @@ module RegisterBank(clock, RegWrite, rs, rt, rd, dataToWrite, data1, data2);
         for(i=0;i<16;i=i+1) begin
             registers[i] <= 16'b0 + i;  
         end
-        registers[0] <= 16'b000;
-        registers[1] <= 16'b001;
-        registers[2] <= 16'b010;
-        registers[3] <= 16'b011;
-        registers[4] <= 16'b100;
-        registers[5] <= 16'b101;
-        registers[6] <= 16'b110;
-        registers[7] <= 16'b111;
     end
 
     always @ (posedge clock)begin       
