@@ -12,30 +12,26 @@ module ALU(clock, input1, input2, ALUControl, Zero, result);
         case(ALUControl)
             
             3'b000: result <= input1 & input2;   //AND
-
             3'b001: result <= input1 | input2;   //OR
-
             3'b010: result <= input1 + input2;   //ADD
-
             3'b110: result <= input1 - input2;   //SUB
-
-            3'b011: begin                        //bnq             
+            3'b011: begin                                  
                 if (input1 - input2 != 16'b0) begin
-                        result <= 16'b0;
-                end else begin
-                        result <= 16'b1;
+                    result <= 16'b0;         //BNE
+                end 
+                else begin
+                    result <= 16'b1;         //BEQ
                 end
             end
-
             3'b111: begin                         //SLT             
-            
-                    if (input1 < input2) begin
-                        result <= 16'b1;
-                end else begin
-                        result <= 16'b0;
+                if (input1 < input2) begin
+                    result <= 16'b1;
+                end 
+                else begin
+                    result <= 16'b0;
                 end
             end
-
+            
             default: result <= 16'b0;
         endcase
         
