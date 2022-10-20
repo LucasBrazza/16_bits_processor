@@ -12,6 +12,7 @@ module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, Mem
     output reg ALUSrc;
     output reg RegWrite;
     output reg Jump;
+    
 
 
     always @ (posedge clock or negedge clock) begin
@@ -32,8 +33,8 @@ module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, Mem
             4'b0001: begin
                 RegDst = 1;
                 ALUSrc = 0;
-                MemtoReg = 0;
-                RegWrite = 1;
+                MemtoReg = 1;
+                RegWrite = 0;
                 MemRead = 0;
                 MemWrite = 0;
                 Branch = 0;
@@ -79,8 +80,8 @@ module ControlUnity(clock, opcode, RegDst, Branch, MemRead, MemtoReg, ALUOp, Mem
             default: begin
                 RegDst = 1;
                 ALUSrc = 0;
-                MemtoReg = 0;
-                RegWrite = 1;
+                MemtoReg = 1;
+                RegWrite = 0;
                 MemRead = 0;
                 MemWrite = 0;
                 Branch = 0;

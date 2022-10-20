@@ -10,20 +10,21 @@ module RegisterBank(clock, RegWrite, rs, rt, rd, dataToWrite, data1, data2);
     output reg [15:0]data1;
     output reg [15:0]data2;
 
-    integer reg1;
-    integer reg2;
-    integer reg3;
     reg [2:0]registers[15:0];
+    integer i;
 	 
     initial begin
-        registers[3'b000] = 3'b000;
-        registers[3'b001] = 3'b001;
-        registers[3'b010] = 3'b010;
-        registers[3'b011] = 3'b011;
-        registers[3'b100] = 3'b100;
-        registers[3'b101] = 3'b101;
-        registers[3'b110] = 3'b110;
-        registers[3'b111] = 3'b111;
+        for(i=0;i<16;i=i+1) begin
+            registers[i] <= 16'b0 + i;  
+        end
+        registers[0] <= 16'b000;
+        registers[1] <= 16'b001;
+        registers[2] <= 16'b010;
+        registers[3] <= 16'b011;
+        registers[4] <= 16'b100;
+        registers[5] <= 16'b101;
+        registers[6] <= 16'b110;
+        registers[7] <= 16'b111;
     end
 
     always @ (posedge clock)begin       
@@ -33,8 +34,7 @@ module RegisterBank(clock, RegWrite, rs, rt, rd, dataToWrite, data1, data2);
 
     always @ (negedge clock)begin
         if(RegWrite == 1)begin
-            registers[reg3] <= dataToWrite;
+            registers[rd] <= dataToWrite;
         end
-//        $monitor("aaa %b",RegWrite);
     end
 endmodule

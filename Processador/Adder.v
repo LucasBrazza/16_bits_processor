@@ -6,6 +6,6 @@ module Adder(clock, input1, input2, result);
     output reg [15:0]result;
 
     always @ (posedge clock or negedge clock)begin
-      result = input1 + input2;
+      result = input1[3:0] + input2[8:5];
     end 
 endmodule

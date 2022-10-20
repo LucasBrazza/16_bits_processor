@@ -13,8 +13,9 @@ module DataMemory(clock, MemRead, MemWrite, address, writeData, dataRead);
     integer i;
 
     initial begin  
-        for(i=0;i<256;i=i+1)  
-            memory[i] <= 16'd0;  
+        for(i=0;i<256;i=i+1) begin
+            memory[i] <= 16'b0;  
+        end
      end  
 
     always @(posedge clock)begin

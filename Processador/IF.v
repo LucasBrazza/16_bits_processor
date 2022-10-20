@@ -22,7 +22,6 @@ module IF(clock, shiftAddress, PCSrc, outputIstruction, outputMux);
     end
 
     always @(posedge clock)begin
-        //$monitor("%b", outputPC);
         outputMux_inpPC = outputMux;
     end
 

@@ -50,12 +50,31 @@ module Monocycle;
         clock = 0;
         shiftAddress_inputIF = 16'b0;
         PCScr_inputIF = 1;
-        #500 $finish;
+        #415 $finish;
 	end
+
+    always @ (clock) begin
+        $display("-----------------------------------------------");
+        $display("Instrução: %b",instruction_outputIF);
+        $display("RegDst: %b",RegDst);
+        $display("Branch: %b",Branch);
+        $display("MemRead: %b",MemRead);
+        $display("MemtoReg: %b",MemtoReg);
+        $display("ALUOp: %b",ALUOp);
+        $display("MemWrite: %b",MemWrite);
+        $display("ALUSrc: %b",ALUSrc);
+        $display("RegWrite: %b",RegWrite);
+        $display("Jump: %b",Jump);
+        $display("ID OUT: %b",readData1_outputID);
+        $display("ID OUT: %b",readData2_outputID);
+        $display("ALU OUT: %b",resultALU_outputEX);
+        $display("PCSrc: %b",PCSrc);
+        $display("MEM OUT: %b",dataRead_outputMEM);
+        $display("WB OUT: %b",dataToWriteOnID);
+    end
 
 	always begin
         #10 clock = ~clock;
-        #20 clock = ~clock;
 	end
 
     always @ (posedge clock) begin

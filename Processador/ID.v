@@ -21,9 +21,6 @@ module ID(clock, rs, rt, rd, funct, signalToExtend, dataToWrite, RegWrite, RegDs
 
     wire [2:0]outputMux;
 
-    always @ (posedge clock) begin
-        //$monitor("%b",readData2);
-    end
 
     MUXRegisters mux(
         .clock(clock),
