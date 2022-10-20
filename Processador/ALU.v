@@ -17,10 +17,10 @@ module ALU(clock, input1, input2, ALUControl, Zero, result);
             3'b110: result <= input1 - input2;   //SUB
             3'b011: begin                                  
                 if (input1 - input2 != 16'b0) begin
-                    result <= 16'b0;         //BNE
+                    result <= 16'b0;             //BNE
                 end 
                 else begin
-                    result <= 16'b1;         //BEQ
+                    result <= 16'b1;             //BEQ
                 end
             end
             3'b111: begin                         //SLT             
@@ -31,7 +31,7 @@ module ALU(clock, input1, input2, ALUControl, Zero, result);
                     result <= 16'b0;
                 end
             end
-            
+
             default: result <= 16'b0;
         endcase
         

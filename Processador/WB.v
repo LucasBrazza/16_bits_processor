@@ -1,4 +1,4 @@
-//`include "banco_registradores.v"
+`include "MUX.v"
 
 module WB(clock, MemtoReg, dataReadMEM, resultALU, outputWB);
 
@@ -11,8 +11,8 @@ module WB(clock, MemtoReg, dataReadMEM, resultALU, outputWB);
 
     MUX muxWB(
         .clock(clock), 
-        .data1(dataReadMEM),
-        .data2(resultALU), 
+        .data1(resultALU),
+        .data2(dataReadMEM), 
         .ctrl(MemtoReg),
         .outputMux(outputWB)
     );
