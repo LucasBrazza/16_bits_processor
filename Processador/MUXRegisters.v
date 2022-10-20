@@ -7,7 +7,7 @@ module MUXRegisters(clock, data1, data2, ctrl, outputMux);
 
     output reg [2:0]outputMux;
 
-    always @ (posedge clock or negedge clock)begin
+    always @ (clock)begin
         if(ctrl == 0)begin
             outputMux = data1;
         end if(ctrl == 1)begin

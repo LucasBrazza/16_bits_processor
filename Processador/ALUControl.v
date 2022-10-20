@@ -16,7 +16,7 @@ module ALUControl(clock, funct, ALUOp, outputALUControl);
 
             2'b11: outputALUControl = 3'b010;
 
-            default: $display("ALUOp value not supported!"); 
+//            default: $display("ALUOp value not supported!"); 
         endcase
     end
 

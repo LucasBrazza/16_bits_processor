@@ -1,7 +1,8 @@
 //`include "../Processador\IF\IF.v"
-`include "../Processador\IF\MuxIF.v"
-`include "../Processador\IF\PC.v"
-`include "../Processador\IF\AddPC4.v"
+`include "../Processador\MuxIF.v"
+`include "../Processador\PC.v"
+`include "../Processador\AddPC4.v"
+
 
 
 module IF_TB;
@@ -18,11 +19,9 @@ module IF_TB;
 
 
 
-
-
     initial begin
         outputPC4 = 16'b0000000000000001;
-        $monitor("clock = %b, PCsrc = %b , PC4 = %b", clk, PCWrite, outputPC4plus);
+        $monitor("clock = %b, PCsrc = %b , PC4 = %b", clk, PCSrc, outputPC4plus);
         clk = 0;
         PCSrc = 0;
         PCWrite = 0;
@@ -35,7 +34,7 @@ module IF_TB;
         PCWrite = !PCWrite;   
 
     end
-/*
+
     //ok
     MuxIF mux(
         .clock(clock),
@@ -57,10 +56,11 @@ module IF_TB;
         .PC4(outputPC4plus),
         .PCWrite(PCWrite));
 
-*/
+/*
     InstructionMemory memIn(
         .clock(clock),
         .endereco(outputPC4),
         .instrucaoOut(outputMEM));
+*/
 
 endmodule

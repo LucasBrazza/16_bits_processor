@@ -1,4 +1,3 @@
-`include "../Control\MUX.v"
 //`include "banco_registradores.v"
 
 module WB(clock, MemtoReg, dataReadMEM, resultALU, outputWB);
@@ -10,7 +9,7 @@ module WB(clock, MemtoReg, dataReadMEM, resultALU, outputWB);
 
     output [15:0]outputWB;
 
-    MUX wb(
+    MUX muxWB(
         .clock(clock), 
         .data1(dataReadMEM),
         .data2(resultALU), 

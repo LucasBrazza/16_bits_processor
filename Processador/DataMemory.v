@@ -12,7 +12,6 @@ module DataMemory(clock, MemRead, MemWrite, address, writeData, dataRead);
 
     always @(posedge clock)begin
         if(MemRead == 1)begin
-            $monitor("aaaa");
             dataRead = data[address];
         end
     end

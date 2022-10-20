@@ -11,7 +11,7 @@ module ID(clock, rs, rt, rd, funct, signalToExtend, dataToWrite, RegWrite, RegDs
     input [2:0]rs;
     input [2:0]rt;
     input [2:0]rd;
-    input [1:0]funct;
+    input [2:0]funct;
     input [5:0]signalToExtend;
     input [15:0]dataToWrite;
 
@@ -20,6 +20,10 @@ module ID(clock, rs, rt, rd, funct, signalToExtend, dataToWrite, RegWrite, RegDs
     output [15:0]extendedSignal;
 
     wire [2:0]outputMux;
+
+    always @ (posedge clock) begin
+        //$monitor("%b",readData2);
+    end
 
     MUXRegisters mux(
         .clock(clock),
@@ -32,9 +36,9 @@ module ID(clock, rs, rt, rd, funct, signalToExtend, dataToWrite, RegWrite, RegDs
     RegisterBank bank(
         .clock(clock), 
         .RegWrite(RegWrite), 
-        .reg1(rs), 
-        .reg2(rt), 
-        .reg3(outputMux), 
+        .rs(rs), 
+        .rt(rt), 
+        .rd(outputMux), 
         .dataToWrite(dataToWrite), 
         .data1(readData1), 
         .data2(readData2));

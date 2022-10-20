@@ -1,8 +1,7 @@
 `include "DataMemory.v"
 `include "Branch.v"
 
-module MEM(clock, MemRead, MemWrite, Zero, Branch, address, writeData, RegDst, 
-            PCSrc);
+module MEM(clock, MemRead, MemWrite, Zero, Branch, address, writeData, RegDst, PCSrc, outputDataRead);
 
     input clock;
     input MemRead;
@@ -11,11 +10,10 @@ module MEM(clock, MemRead, MemWrite, Zero, Branch, address, writeData, RegDst,
     input Branch;
     input [15:0]address;
     input [15:0]writeData;
-    input [2:0]RegDst;
+    input RegDst;
 
     output PCSrc;
     output [15:0]outputDataRead;
-
 
     DataMemory dataMem(
         .clock(clock),

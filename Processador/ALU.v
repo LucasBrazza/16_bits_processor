@@ -29,7 +29,7 @@ module ALU(clock, input1, input2, ALUControl, Zero, result);
                 end
             end
 
-            default: $display("Value not supported!");
+            //default: $display("Value not supported!");
         endcase
         end
 

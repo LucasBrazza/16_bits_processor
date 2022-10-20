@@ -7,7 +7,6 @@ module Branch(clock, s1, s2, outputBranch);
     output reg outputBranch;
 
     always @ (posedge clock or posedge clock)begin
-        $monitor("a");
         outputBranch = s1 && s2; 
     end
 

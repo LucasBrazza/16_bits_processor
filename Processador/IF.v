@@ -3,18 +3,27 @@
 `include "InstructionMemory.v"
 `include "MuxIF.v"
 
-module IF(clock, shiftAddress, PCSrc, outputPC4, outputIstruction);
+module IF(clock, shiftAddress, PCSrc, outputIstruction, outputMux);
 
     input clock;
     input [15:0] shiftAddress;
     input PCSrc;
 
-    wire [15:0]outputMux;
+    output [15:0]outputMux;
     wire [15:0]outputPC;
 
     output wire [15:0]outputPC4;
     output wire [15:0]outputIstruction;
 
+    reg [15:0]outputMux_inpPC;
+
+    initial begin
+        outputMux_inpPC = 16'b0; 
+    end
+
+    always @(outputMux)begin
+        outputMux_inpPC = outputMux;
+    end
 
     MuxIF mux(
         .clock(clock),
@@ -22,6 +31,7 @@ module IF(clock, shiftAddress, PCSrc, outputPC4, outputIstruction);
         .inputPC4Mux(outputPC4),
         .signalShifted(shiftAddress),
         .response(outputMux));
+
 
     PC pc(
         .clock(clock),
@@ -35,7 +45,7 @@ module IF(clock, shiftAddress, PCSrc, outputPC4, outputIstruction);
 
     InstructionMemory memIn(
         .clock(clock),
-        .address(outputPC4),
+        .address(outputPC),
         .instructionOutput(outputIstruction));
 
 endmodule

@@ -1,4 +1,4 @@
-`include "../Control/MUX.v"
+`include "MUX.v"
 `include "adder.v"
 `include "ShiftLeft.v"
 `include "ALUControl.v"
@@ -17,7 +17,8 @@ module EX(clock, Branch, Zero, nextAddress, PC4, funct, ALUOp, dataID1, dataID2,
     input [1:0]ALUOp;
     input [15:0]dataID1;
     input [15:0]dataID2;
-    input [15:0] jumpResult;
+    
+    output [15:0] jumpResult;
     output [15:0]outputALU;
     output [15:0]outputBranch;
     output Zero;

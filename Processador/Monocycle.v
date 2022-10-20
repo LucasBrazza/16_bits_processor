@@ -1,12 +1,14 @@
-`include "IF\IF.v"
-`include "ID\ID.v"
-`include "EX\EX.v"
-`include "MEM\MEM.v"
-`include "WB\WB.v"
+`include "IF.v"
+`include "ControlUnity.v"
+`include "ID.v"
+`include "EX.v"
+`include "MEM.v"
+`include "WB.v"
 
-module Monociclo;
+module Monocycle;
 
     reg clock;
+    reg PCScr_inputIF;
 
     //CONTROL
     wire RegDst;
@@ -22,7 +24,7 @@ module Monociclo;
     wire PCSrc;
 
     //IF
-    wire [15:0] shiftAddress_inputIF;
+    reg [15:0] shiftAddress_inputIF;
     wire [15:0] PC4_outpuIF;
     wire [15:0] instruction_outputIF;
 
@@ -34,30 +36,47 @@ module Monociclo;
     //EX
     wire [15:0]branch_outputEX;
     wire [15:0]resultALU_outputEX;
+    wire [15:0]shiftAddress_outputEX;
 
     //MEM
     wire [15:0]dataRead_outputMEM;
 
     //WB
-    wire [15:0]dataToWriteFromWB;
+    reg [15:0]dataToWriteFromWB;
+    wire [15:0]dataToWriteOnID;
 
 
-    //FAZER CLOCK
     initial begin
         clock = 0;
-        #50 $finish;
+        shiftAddress_inputIF = 16'b0;
+        PCScr_inputIF = 1;
+        #40 $finish;
 	end
 
 	always begin
-	    #5 clock = ~clock;
+        #5 clock = ~clock;
+	end
+
+    always @ (posedge clock) begin
+	    $monitor("Borda de subida %b",instruction_outputIF);
+        PCScr_inputIF = PCSrc;
+        dataToWriteFromWB = dataToWriteOnID;
+        shiftAddress_inputIF = shiftAddress_outputEX;
+	end
+
+    always @ (posedge clock) begin
+	    $monitor("Borda de descida %b",dataToWriteFromWB);
+        PCScr_inputIF = PCSrc;
+        dataToWriteFromWB = dataToWriteOnID;
+        shiftAddress_inputIF = shiftAddress_outputEX;
 	end
 
 
     IF ifmain (
         .clock(clock),
         .shiftAddress(shiftAddress_inputIF),
-        .PCSrc(PcSrc),
-        .outputPC4(PC4_outpuIF),
+        .PCSrc(PCScr_inputIF),
+        .outputMux(PC4_outpuIF),
         .outputIstruction(instruction_outputIF)
     );
 
@@ -87,7 +106,7 @@ module Monociclo;
         .RegDst(RegDst),
         .readData1(readData1_outputID),
         .readData2(readData2_outputID),
-        .extendedSignal(extdSignal_outputID),
+        .extendedSignal(extdSignal_outputID)
     );
 
 
@@ -102,8 +121,10 @@ module Monociclo;
         .dataID1(readData1_outputID),
         .dataID2(readData2_outputID),
         .outputBranch(branch_outputEX),
-        .outputALU(resultALU_outputEX)
+        .outputALU(resultALU_outputEX),
+        .jumpResult(shiftAddress_outputEX)
     );
+
 
     MEM memmain(
         .clock(clock),
@@ -123,11 +144,7 @@ module Monociclo;
         .MemtoReg(MemtoReg),
         .dataReadMEM(dataRead_outputMEM),
         .resultALU(resultALU_outputEX),
-        .outputWB(dataToWriteFromWB)
+        .outputWB(dataToWriteOnID)
     );
-
-    always @ (*) begin
-        $monitor("é pra ser resultado 011 -> %b", dataToWriteFromWB);
-    end
 
 endmodule

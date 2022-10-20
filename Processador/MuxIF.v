@@ -5,14 +5,16 @@ module MuxIF(clock, PCSrc, inputPC4Mux, signalShifted, response);
     input [15:0] signalShifted;
     input PCSrc;
 
+
     output reg [15:0]response;
 
     always @ (*)begin
-        if(PCSrc == 0)begin
-            response <= inputPC4Mux;
-        end if(PCSrc == 1)begin
+        if(PCSrc == 1)begin
             response <= signalShifted;
         end
+        else begin
+            response <= inputPC4Mux;
+        end 
     end
 
 endmodule
