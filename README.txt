@@ -2,7 +2,7 @@ Trabalho desenvolvido para a materia ORGANIZAÇÃO E ARQUITETURA DE COMPUTADORES
 
 A proposta do trabalho era desenvolver um processador da família MIPS monociclo de 16 bits, capaz de executar o equivalente as seguintes instruções: add, and, or, beq, bne, lw, sw, slt e j. Para isso, foi utilizada o seguinte formato de instruções:
 
-![formato_instrucoes](https://user-images.githubusercontent.com/69698754/197090747-01f735cd-84c5-43db-b506-b2d24474bcad.png)
+![formato_instrucoes](https://github.com/LucasBrazza/16_bits_processor/issues/1#issue-1417564957)
 
 Onde o OPCODE (de 4 bits) foi definido da seguinte maneira:
 
